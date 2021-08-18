@@ -4,7 +4,7 @@ import {
   createBottomTabNavigator,
   BottomTabBar,
 } from "@react-navigation/bottom-tabs";
-import Svg, { path } from "react-native-svg";
+import Svg, { Path } from "react-native-svg";
 
 import { Home } from "../screens/Home";
 
@@ -17,7 +17,7 @@ function TabBarCustomButtom({ accessibilityState, children, onPress }) {
 
   if (isSelected) {
     return (
-      <View style={{ flex: 1, alignItems: "center" }}>
+      <View style={{ flex: 1, alignItems: "center", marginBottom: 30 }}>
         <View style={{ flexDirection: "row", position: "absolute", top: 0 }}>
           <View style={{ flex: 1, backgroundColor: COLORS.white }}></View>
           <Svg width={75} height={61} viewBox="0 0 75 61">
@@ -69,9 +69,9 @@ export function TabNavigator() {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
+          backgroundColor: "transparent",
           borderTopWidth: 0,
           elevation: 0,
-          backgroundColor: "transparent",
         },
       }}
     >
