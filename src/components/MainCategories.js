@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import {
   View,
   Text,
@@ -9,6 +10,7 @@ import {
 } from "react-native";
 
 import { COLORS, SIZES, FONTS } from "../constants";
+import { restaurantData } from "../utils/RestaurantData";
 
 export function MainCategories({
   categories,
@@ -19,11 +21,12 @@ export function MainCategories({
 }) {
   function onSelectCategory(category) {
     //filter Restaurant
-    let restaurantList = restaurants.filter((restaurant) =>
+    let restaurantList = restaurantData.filter((restaurant) =>
       restaurant.categories.includes(category.id)
     );
     setRestaurants(restaurantList);
     setSelectedCategory(category);
+    console.log(restaurantList);
   }
 
   function renderItem({ item }) {
@@ -88,7 +91,7 @@ export function MainCategories({
         data={categories}
         horizontal
         showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => `${item.id}`}
+        keyExtractor={(item) => item.id}
         renderItem={renderItem}
         contentContainerStyle={{ paddingVertical: SIZES.padding * 2 }}
       />

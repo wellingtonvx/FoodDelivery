@@ -10,11 +10,12 @@ import {
 } from "react-native";
 
 import { COLORS, images, icons, SIZES, FONTS } from "../constants";
-import { restaurantData } from "../utils/RestaurantData";
-import { categoryData } from "../utils/categoryData";
 import { Header } from "../components/Header";
 import { MainCategories } from "../components/MainCategories";
 import { RestaurantList } from "../components/RestaurantList";
+
+import { categoryData } from "../utils/categoryData";
+import { restaurantData } from "../utils/RestaurantData";
 
 const initialCurrentLocation = {
   streetName: "Itaitinga",
@@ -24,13 +25,17 @@ const initialCurrentLocation = {
   },
 };
 
-export function Home() {
+export function Home({ navigation }) {
   const [categories, setCategories] = useState(categoryData);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [restaurants, setRestaurants] = useState(restaurantData);
   const [currentLocation, setCurrentLocation] = useState(
     initialCurrentLocation
   );
+
+  const affordable = 1;
+  const fairPrice = 2;
+  const expensive = 3;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -44,7 +49,11 @@ export function Home() {
         selectedCategory={selectedCategory}
       />
 
-      <RestaurantList restaurants={restaurants} categories={categories} />
+      <RestaurantList
+        restaurants={restaurants}
+        categories={categories}
+        navigation={navigation}
+      />
     </SafeAreaView>
   );
 }

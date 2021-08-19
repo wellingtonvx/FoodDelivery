@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {} from "@react-navigation/native";
 import {
   View,
   Text,
@@ -11,7 +12,11 @@ import {
 
 import { COLORS, images, icons, SIZES, FONTS } from "../constants";
 
-export function RestaurantList({ restaurants, categories }) {
+const affordable = 1;
+const fairPrice = 2;
+const expensive = 3;
+
+export function RestaurantList({ navigation, categories, restaurants }) {
   const getCategoryNameById = (id) => {
     let category = categories.filter((c) => c.id == id);
 
@@ -26,8 +31,12 @@ export function RestaurantList({ restaurants, categories }) {
     <TouchableOpacity
       style={{
         marginBottom: SIZES.padding * 2,
-        //onPress => navigate to restaurant screen
       }}
+      onPress={() =>
+        navigation.navigate("Restaurant", {
+          item,
+        })
+      }
     >
       {/**Image*/}
       <View
@@ -93,6 +102,17 @@ export function RestaurantList({ restaurants, categories }) {
               </View>
             );
           })}
+          {[1, 2, 3].map((priceRating) => (
+            <Text
+              key={priceRating}
+              style={{ ...FONTS.body3 }}
+              color={
+                priceRating <= item.priceRating ? COLORS.BLACK : COLORS.darkgray
+              }
+            >
+              $
+            </Text>
+          ))}
         </View>
       </View>
     </TouchableOpacity>
