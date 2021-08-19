@@ -26,7 +26,6 @@ export function MainCategories({
     );
     setRestaurants(restaurantList);
     setSelectedCategory(category);
-    console.log(restaurantList);
   }
 
   function renderItem({ item }) {

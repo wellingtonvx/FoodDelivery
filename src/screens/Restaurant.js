@@ -14,8 +14,10 @@ import { COLORS, images, icons, SIZES, FONTS } from "../constants";
 
 import { RestaurantHeader } from "../components/RestaurantHeader";
 import { FoodInfo } from "../components/FoodInfo";
+import { Order } from "../components/Order";
 
 export function Restaurant({ route, navigation }) {
+  const scrollX = new Animated.Value(0);
   const [restaurant, setRestaurant] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
 
@@ -27,9 +29,17 @@ export function Restaurant({ route, navigation }) {
   });
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <RestaurantHeader navigation={navigation} restaurant={restaurant} />
-      <FoodInfo restaurant={restaurant} />
+      <FoodInfo restaurant={restaurant} scrollX={scrollX} />
+      <Order scrollX={scrollX} restaurant={restaurant} />
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.lightGray2,
+  },
+});
