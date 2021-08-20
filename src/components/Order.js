@@ -1,19 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import {} from "@react-navigation/native";
-import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  TouchableOpacity,
-  Image,
-  FlatList,
-  Animated,
-} from "react-native";
+import { View, Text, TouchableOpacity, Image, Animated } from "react-native";
 
-import { COLORS, images, icons, SIZES, FONTS } from "../constants";
+import { COLORS, icons, SIZES, FONTS } from "../constants";
 
-export function Order({ scrollX, restaurant }) {
+export function Order({
+  scrollX,
+  restaurant,
+  getBasketItemCount,
+  sumOrder,
+  navigation,
+  currentLocation,
+}) {
   function renderDots() {
     const dotPosition = Animated.divide(scrollX, SIZES.width);
 
@@ -86,8 +84,10 @@ export function Order({ scrollX, restaurant }) {
             borderBottomWidth: 1,
           }}
         >
-          <Text style={{ ...FONTS.h3 }}>Items no Carrinho</Text>
-          <Text style={{ ...FONTS.h3 }}>$15,00</Text>
+          <Text style={{ ...FONTS.h3 }}>
+            {getBasketItemCount()} Items no Carrinho
+          </Text>
+          <Text style={{ ...FONTS.h3 }}>${sumOrder()}</Text>
         </View>
         <View
           style={{
@@ -100,14 +100,59 @@ export function Order({ scrollX, restaurant }) {
           <View style={{ flexDirection: "row" }}>
             <Image
               source={icons.pin}
+              resizeMode="contain"
               style={{
                 width: 20,
                 height: 20,
                 tintColor: COLORS.darkgray,
               }}
             />
-            <Text style={{ ...FONTS.h3 }}>Location</Text>
+            <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>
+              Location
+            </Text>
           </View>
+
+          <View style={{ flexDirection: "row" }}>
+            <Image
+              source={icons.master_card}
+              resizeMode="contain"
+              style={{
+                width: 20,
+                height: 20,
+                tintColor: COLORS.darkgray,
+              }}
+            />
+            <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>
+              {" "}
+              8888
+            </Text>
+          </View>
+        </View>
+
+        <View
+          style={{
+            padding: SIZES.padding * 2,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              width: SIZES.width * 0.9,
+              padding: SIZES.padding,
+              backgroundColor: COLORS.primary,
+              alignItems: "center",
+              borderRadius: SIZES.radius,
+            }}
+            onPress={() =>
+              navigation.navigate("OrderDelivery", {
+                restaurant,
+                currentLocation,
+              })
+            }
+          >
+            <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Pedido</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

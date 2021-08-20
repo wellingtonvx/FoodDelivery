@@ -1,22 +1,21 @@
-import React, { useState } from "react";
-import {} from "@react-navigation/native";
+import React from "react";
 import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
   TouchableOpacity,
   Image,
   FlatList,
 } from "react-native";
 
-import { COLORS, images, icons, SIZES, FONTS } from "../constants";
+import { COLORS, icons, SIZES, FONTS } from "../constants";
 
-const affordable = 1;
-const fairPrice = 2;
-const expensive = 3;
-
-export function RestaurantList({ navigation, categories, restaurants }) {
+export function RestaurantList({
+  navigation,
+  categories,
+  restaurants,
+  currentLocation,
+}) {
   const getCategoryNameById = (id) => {
     let category = categories.filter((c) => c.id == id);
 
@@ -35,6 +34,7 @@ export function RestaurantList({ navigation, categories, restaurants }) {
       onPress={() =>
         navigation.navigate("Restaurant", {
           item,
+          currentLocation: currentLocation,
         })
       }
     >

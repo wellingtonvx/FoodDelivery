@@ -12,7 +12,7 @@ import {
 
 import { COLORS, images, icons, SIZES, FONTS } from "../constants";
 
-export function FoodInfo({ restaurant, scrollX }) {
+export function FoodInfo({ restaurant, scrollX, EditOrder, OrderQty }) {
   return (
     <Animated.ScrollView
       horizontal
@@ -56,6 +56,7 @@ export function FoodInfo({ restaurant, scrollX }) {
                   borderTopLeftRadius: 25,
                   borderBottomLeftRadius: 25,
                 }}
+                onPress={() => EditOrder("-", item.menuId, item.price)}
               >
                 <Text style={{ ...FONTS.body1 }}> - </Text>
               </TouchableOpacity>
@@ -68,7 +69,7 @@ export function FoodInfo({ restaurant, scrollX }) {
                   justifyContent: "center",
                 }}
               >
-                <Text style={{ ...FONTS.h2 }}>5</Text>
+                <Text style={{ ...FONTS.h2 }}>{OrderQty(item.menuId)}</Text>
               </View>
 
               <TouchableOpacity
@@ -80,6 +81,7 @@ export function FoodInfo({ restaurant, scrollX }) {
                   borderTopRightRadius: 25,
                   borderBottomRightRadius: 25,
                 }}
+                onPress={() => EditOrder("+", item.menuId, item.price)}
               >
                 <Text style={{ ...FONTS.body1 }}> + </Text>
               </TouchableOpacity>

@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  TouchableOpacity,
-  Image,
-  FlatList,
-} from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 
-import { COLORS, images, icons, SIZES, FONTS } from "../constants";
+import { COLORS } from "../constants";
 import { Header } from "../components/Header";
 import { MainCategories } from "../components/MainCategories";
 import { RestaurantList } from "../components/RestaurantList";
@@ -18,10 +10,10 @@ import { categoryData } from "../utils/categoryData";
 import { restaurantData } from "../utils/RestaurantData";
 
 const initialCurrentLocation = {
-  streetName: "Itaitinga",
+  streetName: "Kuching",
   gps: {
-    latitude: -3.8906073,
-    longitude: -38.5206712,
+    latitude: 1.5496614931250685,
+    longitude: 110.36381866919922,
   },
 };
 
@@ -32,10 +24,6 @@ export function Home({ navigation }) {
   const [currentLocation, setCurrentLocation] = useState(
     initialCurrentLocation
   );
-
-  const affordable = 1;
-  const fairPrice = 2;
-  const expensive = 3;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -53,6 +41,7 @@ export function Home({ navigation }) {
         restaurants={restaurants}
         categories={categories}
         navigation={navigation}
+        currentLocation={currentLocation}
       />
     </SafeAreaView>
   );

@@ -1,16 +1,7 @@
-import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  TouchableOpacity,
-  Image,
-  FlatList,
-  Animated,
-} from "react-native";
+import React from "react";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 
-import { COLORS, images, icons, SIZES, FONTS } from "../constants";
+import { COLORS, icons, SIZES, FONTS } from "../constants";
 
 export function RestaurantHeader({ navigation, restaurant }) {
   return (

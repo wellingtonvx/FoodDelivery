@@ -7,6 +7,14 @@ import { TabNavigator } from "../navigation/tabs";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
+const initialCurrentLocation = {
+  streetName: "Itaitinga",
+  gps: {
+    latitude: -3.8906073,
+    longitude: -38.5206712,
+  },
+};
+
 export function AppRoutes() {
   return (
     <Navigator
@@ -14,6 +22,7 @@ export function AppRoutes() {
         headerShown: false,
       }}
       initialRouteName={"Home"}
+      initialCurrentLocation={initialCurrentLocation}
     >
       <Screen name="Home" component={TabNavigator} />
       <Screen name="OrderDelivery" component={OrderDelivery} />
