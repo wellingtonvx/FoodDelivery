@@ -7,6 +7,9 @@ import {
 import Svg, { Path } from "react-native-svg";
 
 import { Home } from "../screens/Home";
+import { Like } from "../screens/Like";
+import { Search } from "../screens/Search";
+import { User } from "../screens/User";
 
 import { COLORS, icons } from "../constants";
 
@@ -97,7 +100,7 @@ export function TabNavigator() {
 
       <Tab.Screen
         name="Search"
-        component={Home}
+        component={Search}
         options={{
           tabBarIcon: ({ focused }) => (
             <Image
@@ -116,7 +119,7 @@ export function TabNavigator() {
 
       <Tab.Screen
         name="Like"
-        component={Home}
+        component={Like}
         options={{
           tabBarIcon: ({ focused }) => (
             <Image
@@ -135,7 +138,7 @@ export function TabNavigator() {
 
       <Tab.Screen
         name="User"
-        component={Home}
+        component={User}
         options={{
           tabBarIcon: ({ focused }) => (
             <Image
